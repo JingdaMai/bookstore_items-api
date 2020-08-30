@@ -1,4 +1,4 @@
-package app
+package application
 
 import (
 	"github.com/JingdaMai/bookstore_items-api/controllers"

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/JingdaMai/bookstore_items-api/app"
+	"github.com/JingdaMai/bookstore_items-api/application"
 )
 
 func main() {
-	app.StartApplication()
+	application.StartApplication()
 }

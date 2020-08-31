@@ -7,8 +7,10 @@ import (
 	"github.com/JingdaMai/bookstore_items-api/utils/http_utils"
 	"github.com/JingdaMai/bookstore_oauth-go/oauth"
 	"github.com/JingdaMai/bookstore_utils-go/rest_errors"
+	"github.com/gorilla/mux"
 	"io/ioutil"
 	"net/http"
+	"strings"
 )
 
 var ItemsController itemsControllerInterface = &itemsController{}
@@ -63,5 +65,13 @@ func (c *itemsController) Create(w http.ResponseWriter, r *http.Request) {
 }
 
 func (c *itemsController) Get(w http.ResponseWriter, r *http.Request) {
-	return
+	vars := mux.Vars(r)
+	itemId := strings.TrimSpace(vars["id"])
+
+	item, err := services.ItemsService.Get(itemId)
+	if err != nil {
+		http_utils.RespondError(w, err)
+		return
+	}
+	http_utils.RespondJson(w, http.StatusOK, item)
 }

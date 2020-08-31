@@ -1,6 +1,7 @@
 package application
 
 import (
+	"github.com/JingdaMai/bookstore_items-api/clients/elasticsearch"
 	"github.com/gorilla/mux"
 	"net/http"
 	"time"
@@ -9,6 +10,8 @@ import (
 var router = mux.NewRouter()
 
 func StartApplication() {
+	elasticsearch.Init()
+
 	mapUrls()
 
 	srv := &http.Server{
